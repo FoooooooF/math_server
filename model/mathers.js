@@ -1,9 +1,9 @@
 var execution=require("./execution");
-function getAll(res){
-    execution(`SELECT * FROM mather`,res)
+function getAll(){
+    return execution(`SELECT * FROM mather`)
 }
-function getOne(res,id){
-    execution(`SELECT * FROM mather WHERE id=${id}`,res)
+function getOne(id){
+    return execution(`SELECT * FROM mather WHERE id=${id}`)
 }
 module.exports = {
     getAll,

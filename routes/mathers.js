@@ -3,12 +3,14 @@ var router = express.Router();
 var modelMathers = require('../model/mathers');
 /* GET mathers */
 router.get('/', function(req, res, next) {
-    modelMathers.getAll(res);
+   modelMathers.getAll().then(result=>{
+        res.json(result)
+    });
 });
 router.get('/:id', function(req, res, next) {
-    // res.send(JSON.stringify(req))
-    console.log(req.params.id)
-    modelMathers.getOne(res,req.params.id);
+    modelMathers.getOne(req.params.id).then(result=>{
+        res.json(result)
+    });
 });
 
 module.exports = router;
