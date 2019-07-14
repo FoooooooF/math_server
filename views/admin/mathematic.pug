@@ -1,0 +1,42 @@
+extends layout
+block head
+    style.
+        body{
+            background: #002152 radial-gradient(closest-corner, #004bb8, #002152) no-repeat;
+        }
+        .list{
+            background-color:#fff;
+        }
+
+block content
+    .container
+        include common/nav.pug
+
+        table.table.table-striped.list
+            thead
+                tr
+                    th 序号
+                    th 名称
+                    th 头像
+                    th 操作
+            tbody
+                - for (var x = 0; x < 5; x++)
+                    tr
+                        td 1
+                        td guass
+                        td 123456
+                        td
+                            button.btn.btn-danger(style="margin-right:20px") 删除
+                            button.btn.btn-primanpm  编辑
+            
+        
+    
+
+block foot
+    script.
+        $(document).ready(function () {
+            $("#login").on("click",function(e){
+                e.preventDefault();
+                location.href="admin/mathematic";
+            })
+        });

@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
     });
 });
 router.get('/:id', function(req, res, next) {
+    console.log(modelMathers.getOne(req.params.id));
     modelMathers.getOne(req.params.id).then(result=>{
         res.json(result)
     });
