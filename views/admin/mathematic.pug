@@ -6,28 +6,52 @@ block head
         }
         .list{
             background-color:#fff;
+            padding:10px;
+        }
+        .mt10{
+            margin-top:10px;
         }
 
 block content
     .container
         include common/nav.pug
 
-        table.table.table-striped.list
-            thead
-                tr
-                    th 序号
-                    th 名称
-                    th 头像
-                    th 操作
-            tbody
-                - for (var x = 0; x < 5; x++)
+        div.list.mt10.clearfix
+            button.btn.btn-success.pull-right.add 新增数学家    
+
+            table.table.table-striped.mt10
+                thead
                     tr
-                        td 1
-                        td guass
-                        td 123456
-                        td
-                            button.btn.btn-danger(style="margin-right:20px") 删除
-                            button.btn.btn-primanpm  编辑
+                        th 序号
+                        th 名称
+                        th 时代
+                        th 头像
+                        th 操作
+                tbody
+                    - for (var x = 0; x < list.length; x++)
+                        tr
+                            td #{x+1}
+                            td #{list[x].name_cn}  
+                                br 
+                                | #{list[x].name_en}
+                            td  #{list[x].year_born}年 至 #{list[x].year_die}年   
+                            td 
+                                img(src = list[x].avatar, style="width:50px;height:50px" alt="") 
+                            td
+                                button.btn.btn-danger(data-id=list[x].id,style="margin-right:20px", data-toggle="modal",data-target=".bs-example-modal-sm") 删除
+                                button.btn.btn-primary  编辑
+            
+            .modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel')
+                .modal-dialog.modal-sm(role='document')
+                    .modal-content
+                        .modal-header
+                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                span(aria-hidden='true') &times;
+                            h4#myModalLabel.modal-title 删除
+                        .modal-body 删除后无法恢复,确定要删除吗?
+                        .modal-footer
+                            button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                            button.btn.btn-primary.delete(type='button') 确定
             
         
     
@@ -35,8 +59,46 @@ block content
 block foot
     script.
         $(document).ready(function () {
-            $("#login").on("click",function(e){
+           
+            //添加
+            $(".add").on("click",function(e){
                 e.preventDefault();
-                location.href="admin/mathematic";
+                var id=$(this).data(id);
+                var data={
+                    "name_cn": "TEST·高斯",
+                    "information": "Carl Friedrich Gauss，1777-1855）可以说是历史上最伟大的数学家。他在几乎所有数学领域都取得了开创性的发现，从代数和数论到统计学，微积分，几何学，地质学和天文学。\r\n\r\n根据传说，他在3岁时纠正了父亲会计中的一个错误，并找到了一种方法，可以在8岁时迅速将所有整数从1增加到1000.他还是青少年时做出了他的第一个重要发现，后来辅导了许多其他着名的数学家作为教授。",
+                    "avatar": "https://mathigon.org/resources/shared/bios/gauss.jpg",
+                    "name_en": "TEST·高斯",
+                    "year_die": 1855,
+                    "year_born": 1777,
+                    "achievement": "素数定理,三角数,非欧几何"
+                }
+                $.ajax({
+                    type: "post",
+                    url: `/api/mathers`,
+                    data:data,
+                    success: function (data) {
+                       window.location.reload();
+                    }
+                })
+            })
+
+            window.deleteIndex=undefined;
+            //删除
+            $(".list").on("click",".btn-danger",function(e){
+                e.preventDefault();
+                var id=$(this).data().id;
+                window.deleteIndex=id;
+                console.log(id);
+            })
+            $(".delete").on("click",function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "delete",
+                    url: `/api/mathers/${window.deleteIndex}`,
+                    success: function (data) {
+                        window.location.reload();
+                    }
+                })
             })
         });

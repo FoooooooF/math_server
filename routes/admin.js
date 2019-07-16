@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var modelMathers = require('../model/mathers');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -14,9 +15,13 @@ router.get('/login', function (req, res, next) {
     });
 });
 router.get('/mathematic', function (req, res, next) {
-    res.render('admin/mathematic', {
-        title: 'login'
+    modelMathers.getAll().then(result=>{
+        res.render('admin/mathematic', {
+            title: 'login',
+            list:result,
+        });
     });
+    
 });
 
 

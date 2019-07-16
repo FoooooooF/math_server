@@ -14,4 +14,20 @@ router.get('/:id', function(req, res, next) {
     });
 });
 
+//删除
+router.delete('/:id', function(req, res, next) {
+    console.log(modelMathers.getOne(req.params.id));
+    modelMathers.deleteOne(req.params.id).then(result=>{
+        res.json(result)
+    });
+});
+
+//保存
+router.post('/', function(req, res, next) {
+    console.log(req.body);
+    modelMathers.save(req.body).then(result=>{
+        res.json(result)
+    });
+});
+
 module.exports = router;
