@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-13 12:37:09
+ * @LastEditTime: 2019-08-09 20:58:37
+ * @LastEditors: Please set LastEditors
+ */
 var mysql = require('mysql');
 
 console.log("Node Enviroment: "+ process.env.NODE_ENV);
@@ -11,10 +18,10 @@ if (process.env.NODE_ENV === 'development'){
         database: 'math', //选择数据库
     }
 }else if (process.env.NODE_ENV === 'production'){
-    dbConf={
-        host: '47.99.41.56', //主机
+    dbConf={ //假的
+        host: '00.00.00.00', //主机
         user: 'root', //MySQL认证用户名
-        password: '123456', //MySQL认证用户密码
+        password: '', //MySQL认证用户密码
         port: '3306', //端口号
         database: 'math', //选择数据库
     }
