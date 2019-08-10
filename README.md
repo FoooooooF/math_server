@@ -2,12 +2,12 @@
  * @Description: mather server
  * @Author: hxl
  * @Date: 2019-07-12 11:52:13
- * @LastEditTime: 2019-08-09 22:22:30
+ * @LastEditTime: 2019-08-10 12:42:35
  * @LastEditors: Please set LastEditors
  -->
 ### version 1.0.0
 1. 安装 express generator快速生成项目
-2. 安装nodemon 进行调试
+2. 安装nodemon 进行调试,cross-env  区分开发和生产环境
 3. 设计数据库，并通过安装mysql连接mariaDB数据库
 4. 开发后台渲染的展示页，和管理页面
 
@@ -17,6 +17,7 @@
 
 
 2. 实现JWT用户验证登录流程
+> jsonwebtoken 签发token，express-jwt用来检验/解密 token
 
 # todolist
 1. node express 后台 登录 mather修改 user/mather
@@ -27,3 +28,4 @@
 # reference
 1. [Sequelize 和 MySQL 对照](https://segmentfault.com/a/1190000003987871)
 2. [sequelize-auto从数据库表自动生成Sequelize模型(Model)](https://itbilu.com/nodejs/npm/41mRdls_Z.html)
+3. [Express4 + Mongoose + JSON Web Token Authentication](https://matoski.com/article/jwt-express-node-mongoose/)

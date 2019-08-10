@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: hxl
  * @Date: 2019-07-13 12:38:16
- * @LastEditTime: 2019-08-09 22:15:48
+ * @LastEditTime: 2019-08-10 11:25:27
  * @LastEditors: Please set LastEditors
  */
 const Sequelize = require("./sequelize")
